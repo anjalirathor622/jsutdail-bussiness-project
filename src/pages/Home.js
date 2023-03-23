@@ -1,5 +1,7 @@
 //import area
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
+import URL from '../Helper/url';
 
 //function area
 export default function Home() {
@@ -7,15 +9,14 @@ export default function Home() {
   const[businessCategory,setBusinessCatagory] = useState([]);
 
   useEffect(()=>{
-    fetch(`http://localhost:1337/api/bussiness-names?populate=*`)
-    .then(res=>res.json())
+    fetch(`${URL}/api/bussinesses?populate=*`)
+    .then(res=> res.json())
     .then((data)=>{
       console.log(data.data);
       setBusinessCatagory(data.data);
-
     })
     .catch((err)=>{console.log(err)})
-  })
+  },[])
 
   //funtion defination area
 
@@ -27,10 +28,10 @@ export default function Home() {
         {
           businessCategory.map((cv,idx,arr)=>{
             return  <li key={idx} className='me-3'>
-                      <a href='#' className='text-center'>
-                        <img src={'http://localhost:1337'+cv.attributes.logo.data.attributes.url} /><br/>
-                        {cv.attributes.name}
-                      </a>
+                      <Link className='text-center'>
+                        <img src={`${URL}`+cv.attributes.logo.data.attributes.url } alt="" /><br/>
+                        {cv.attributes.Name}
+                      </Link>
                     </li>
           })
         }
