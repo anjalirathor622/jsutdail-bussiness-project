@@ -54,7 +54,7 @@ export default function SearchFilter() {
                                                         <Card.Text>
                                                             {cv.attributes.text}
                                                         </Card.Text>
-                                                        <Button className="btn btn-success" >{cv.attributes.phoneCall}</Button>
+                                                        <a href={'tel:'+cv.attributes.phone} className="btn btn-success" >{cv.attributes.phoneCall}</a>
                                                     </Card.Body>
                                                 </Col>
                                             </Row>                
