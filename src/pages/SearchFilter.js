@@ -16,13 +16,14 @@ export default function SearchFilter() {
         fetch(`${URL}/api/business-names?populate=*&filters[bussiness][Name][$containsi]=${searchParams.get("bus_cat")}`)
         .then(res=>res.json())
         .then((data)=>{
-            console.log(data.data)
+            console.log('buscat=====',data.data)
             setBusiCategory(data.data)
         })
         .catch(err=>err)
     },[])
 
-
+    //function defination
+   
     //return
     return (
         <>
@@ -32,8 +33,8 @@ export default function SearchFilter() {
                     {
                         //console.log('set busicat====---->',busiCategory)
                         busiCategory.map((cv,idx,arr)=>{
-
-                            return  <Link key={idx}  to='/details'>
+                                    
+                            return  <Link to={'/details?bus_id=' +cv.id} key={idx}>
                                         <Card className="p-3 mb-4">
                                             <Row>
                                                 <Col sm={3}>
