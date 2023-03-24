@@ -28,7 +28,7 @@ export default function Home() {
         {
           businessCategory.map((cv,idx,arr)=>{
             return  <li key={idx} className='me-3'>
-                      <Link className='text-center'>
+                      <Link to="/search" className='text-center'>
                         <img src={`${URL}`+cv.attributes.logo.data.attributes.url } alt="" /><br/>
                         {cv.attributes.Name}
                       </Link>

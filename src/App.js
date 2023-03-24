@@ -7,14 +7,14 @@ import Details from './pages/Details'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import SearchFilter from './pages/SearchFilter'
 
-//defination area
+//funtional componantes
 export default function App() {
-  
-    // hooks area
-
-
-    //function defination area
+    /*
+    if(window.localStorage.getItem('jwt_token')===null){
+        return <Login />
+    }*/
 
 
     //return statement
@@ -26,12 +26,8 @@ export default function App() {
                     <Route path="login" element={<Login />}></Route>
                     <Route path="register" element={<Register />}></Route>
                     <Route path="details" element={<Details />}></Route>
-                    {
-                        //console.log(window.localStorage.getItem('jwt_token') )
-                        window.localStorage.getItem('jwt_token')!==null && 
-                        <Route path="business-register" element={<BusinessRegister />}></Route>
-                    }
-                   
+                    <Route path="business-register" element={<BusinessRegister />}></Route>
+                    <Route path="search" element={<SearchFilter />}></Route>
                 </Route>
             </Routes>
         </Router>

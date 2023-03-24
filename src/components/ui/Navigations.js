@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Container, Form, Nav, Navbar } from 'react-bootstrap'
+import { Button, Container, Form, InputGroup, Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import logo from '../../logo.svg';
+//import Geocode from "react-geocode";
 
 export default function Navigations() {
     //Hooks 
@@ -14,12 +15,29 @@ export default function Navigations() {
 
     }
 
+    let x = document.getElementById("demo");
+    let getLocation = ()=>{
+        if (navigator.geolocation) {
+            //alert('ok')
+          navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+          x.value = "Geolocation is not supported by this browser.";
+        }
+      }
+      
+    let showPosition=(position)=>{
+        console.log(x)
+        console.log(position)
+        x.value= "Teacher Colony,Neemuch"
+       // x.value = "Latitude: " + position.coords.latitude +
+        //"<br>Longitude: " + position.coords.longitude;
+      }
     //return
     return (
         <>
              <Navbar bg="light" expand="lg" className='h-100'>
                 <Container fluid className='h-100'>
-                    <Navbar.Brand href="#" className='h-100'> 
+                    <Link to="/" className='h-100'> 
                     <img
                         src={logo}
                         width="100"
@@ -27,39 +45,49 @@ export default function Navigations() {
                         className="d-inline-block align-top"
                         alt="React Bootstrap logo"
                     />
-                    </Navbar.Brand>
+                    </Link>
+                    <InputGroup className="mb-1 me-5 ps-5 " size="sm">
+                    <Button variant="outline-success" onClick={()=>{getLocation()}}>your location</Button>
+                        <Form className="d-flex" >
+                            <Form.Control
+                                id="demo"
+                                type="text"
+                                readOnly
+                                placeholder="location"
+                                className=" me-2 "
+                                aria-label="location"
+                            />
+                        </Form>
+                    </InputGroup>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
-                        <Form className="d-flex">
-                            <Form.Control
-                                type="search"
-                                placeholder="Search"
-                                className="me-2"
-                                aria-label="Search"
-                            />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
-                        <Nav
-                            className="me-auto my-2 my-lg-0"
-                            style={{ maxHeight: '100px' }}
-                            navbarScroll
-                        >
+                        
+                        <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
                             <Link to="/" className='btn'>Home</Link>
                             {
-                                  window.localStorage.getItem('jwt_token')===null && 
-                                  <>
+                                window.localStorage.getItem('jwt_token')===null && 
+                                <>
+                                    <Link to="/register" className='btn'>Register</Link>
                                     <Link to="/login" className='btn'>login</Link>
-                                    <Link to="/register" className='btn'>register</Link>
-                                  </>
+                                </>
                             }
                             {
                                 window.localStorage.getItem('jwt_token')!==null && 
                                 <>
-                                  <Nav.Link onClick={() =>{Logout()}} className='btn'>logout</Nav.Link>
                                   <Link to='/business-register' className='btn'> Register business</Link>
+                                  <Nav.Link onClick={() =>{Logout()}} className='btn'>logout</Nav.Link>
                                 </>
                             }
                         </Nav>
+                        <Form className="d-flex " >
+                            <Form.Control
+                                type="search"
+                                placeholder="Search"
+                                className="mb-1 me-2 ps-5 pe-5 "
+                                aria-label="Search"
+                            />
+                            <Button className='btn'>Search</Button>
+                        </Form>
                    </Navbar.Collapse>
                 </Container>
             </Navbar>
