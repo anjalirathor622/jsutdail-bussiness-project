@@ -12,7 +12,7 @@ export default function Home() {
     fetch(`${URL}/api/bussinesses?populate=*`)
     .then(res=> res.json())
     .then((data)=>{
-      console.log(data.data);
+      console.log("businaesssdata=====>",data.data);
       setBusinessCatagory(data.data);
     })
     .catch((err)=>{console.log(err)})
@@ -28,7 +28,7 @@ export default function Home() {
         {
           businessCategory.map((cv,idx,arr)=>{
             return  <li key={idx} className='me-3'>
-                      <Link to="/search" className='text-center'>
+                      <Link to={"/search?bus_cat="+cv.attributes.Name} className='text-center'>
                         <img src={`${URL}`+cv.attributes.logo.data.attributes.url } alt="" /><br/>
                         {cv.attributes.Name}
                       </Link>

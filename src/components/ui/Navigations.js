@@ -26,10 +26,10 @@ export default function Navigations() {
       }
       
     let showPosition=(position)=>{
-        console.log(x)
-        console.log(position)
-        x.value= "Teacher Colony,Neemuch"
-       // x.value = "Latitude: " + position.coords.latitude +
+        //console.log(x)
+        //console.log(position)
+        x.value= "Teacher Colony,Neemuch";
+        // x.value = "Latitude: " + position.coords.latitude +
         //"<br>Longitude: " + position.coords.longitude;
       }
     //return
@@ -53,7 +53,7 @@ export default function Navigations() {
                                 id="demo"
                                 type="text"
                                 readOnly
-                                placeholder="location"
+                                placeholder="Teacher Colony,Neemuch"
                                 className=" me-2 "
                                 aria-label="location"
                             />
