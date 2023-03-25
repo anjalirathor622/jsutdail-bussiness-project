@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { Badge, Card, Col, ListGroup, Row } from 'react-bootstrap'
 import { Link, useSearchParams } from 'react-router-dom';
 import URL from '../Helper/url';
 
@@ -55,14 +55,13 @@ export default function SearchFilter() {
                                                         <Card.Text>
                                                             {cv.attributes.text}
                                                         </Card.Text>
-                                                        <a href={'tel:'+cv.attributes.phone} className="btn btn-success" >{cv.attributes.phoneCall}</a>
+                                                        <a href={'tel:'+cv.attributes.phone} className="btn btn-success" onClick={(e)=>{e.stopPropagation();}}>{cv.attributes.phoneCall}</a>
                                                     </Card.Body>
                                                 </Col>
                                             </Row>                
                                         </Card> 
                                     </Link>
-                        
-                        })
+                            })
                     }
                      
                 </Col>
